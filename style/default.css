@@ -1,0 +1,27 @@
+.banner	     { background-color: #003366 }
+.sidebar     { background-color: #cccccc }
+.content     { background-color: #ffffff }
+.subtitle    { font-size: 28px; font-weight: bold; font-family:helvetica,arial; color: #ffffff; padding: 8px }
+.title2      { font-size: 14px; font-weight: bold; font-family:helvetica,arial; color: #cccccc; background-color: #003366; padding:6px }
+.title3      { font-size: 14px; font-family:helvetica,arial; color: #003366; padding:6px }
+.savebutton  { font-size: 14px; font-family:helvetica,arial; color: #003366; background-color: #cccccc; cursor: hand; cursor:pointer;border: 0px; padding: 0px; text-align: left}
+.title4      { font-size: 16px; font-weight: bold; font-family:helvetica,arial; color: #003366; padding:6px }
+.title5      { font-size: 16px; font-family:helvetica,arial; color: #003366; padding:6px }
+.content     { font-size: 12px; color: #003366; font-family:helvetica,arial }
+.edit        { font-size: 12px; border: 1px solid #003366; width: 140px; font-family:helvetica,arial }
+.wedit        { font-size: 12px; border: 1px solid #003366; width: 310px; font-family:helvetica,arial }
+.valuerange   { font-size: 11px; border: 1px solid #003366; width: 65px; font-family:helvetica,arial }
+.select      { font-size: 12px; border: 1px solid #003366; width: 140px; font-family:helvetica,arial }
+.select2     { font-size: 12px; border: 1px solid #003366; width: 80px; font-family:helvetica,arial; left-padding: 5px}
+.button      { font-size: 12px; border: 1px solid #003366; font-family:helvetica,arial; cursor:hand; cursor:pointer }
+.text        { font-size: 12px; color: #003366; font-family:helvetica,arial }
+.text2       { font-size: 12px; color: #003366; font-family:helvetica,arial;word-break: keep-all;white-space:nowrap }
+.title1      { font-size: 12px; font-weight: bold; color: #003366; font-family:helvetica,arial }
+.title11     { font-size: 12px; font-weight: bold; color: #003366; font-family:helvetica,arial;word-break: keep-all;white-space:nowrap }
+.stitle      { font-size: 12px; font-style: italic; color: #003366; font-family:helvetica,arial }
+.warning     { font-size: 12px; color: #883333; font-family:helvetica,arial }
+.tab	     { font-size: 12px; border: 1px solid #003366; font-family:helvetica,arial; padding: 5px }
+a            { text-decoration: none; font-size: 12px; color:#003366; font-family:helvetica,arial }
+a:link       { text-decoration: none; color:#003366 }
+a:hover      { text-decoration: underline; color:#003366 }
+a:active     { text-decoration: none; color: #003366 } 
