@@ -2,18 +2,18 @@
 
 Painel desenvolvido para administrar CHAN_DONGLE com portabilidade do site www.portabilidadecelular.com
 
-INSTALAÇÃO:
+### INSTALAÇÃO:
 
 Dependencias:
 Asterisk 1.8 ou superior
 Chan_dongle
 
 
-PASSO A PASSO
+### PASSO A PASSO
 
-1- Deixar seu /etc/asterisk/dongle.conf assim: 
+### Deixar seu /etc/asterisk/dongle.conf assim: 
 (Você pode editar as propriedes conforme sua necessidade.)
-
+```sh
 [general]
 interval=5
 
@@ -38,42 +38,48 @@ disallow=all
 allow=alaw,ulaw,gsm
 context=chipcerto_in
 disable=no
-
-2- Adicionar permissao para o /etc/asterisk/manager.conf
-
+```
+### Adicionar permissao para o /etc/asterisk/manager.conf
+```sh
 [magnus]
 secret = magnussolution
 deny=0.0.0.0/0.0.0.0
 permit=127.0.0.1/255.255.255.0
 read = system,call,log,verbose,agent,user,config,dtmf,reporting,cdr,dialplan
 write = system,call,agent,user,config,command,reporting,originate
+```
 
+### Criar arquivos de configuração. (So executar os comandos abaixo)
 
-3- Criar arquivos de configuração. (So executar os comandos abaixo)
-
+```sh
 echo '' > /etc/asterisk/chipcerto_dongle.conf
 echo '[redirectchipcerto]
 exten => _55341011.,1,Dial(dongle/r5/041${EXTEN:8})
-    same => n,hangup()        
+    same => n,hangup()      
 
 [chipcerto]
 exten => _0ZX[6-9]X.,1,NoOp(######CONSULTA DA PORTABILIDADE######)
 same => n,Dial(SIP/portabilidadecelular/${EXTEN})
 same => n,CONGESTION(0)
 same => n,Hangup()' > /etc/asterisk/chipcerto_extensions.conf
-
+```
+```sh
 echo '' > /etc/asterisk/chipcerto_extensions_in.conf
-
-echo '[portabilidadecelular] 
-     type = peer 
-     fromdomain = sip.portabilidadecelular.com 
-     host = sip.portabilidadecelular.com 
-     port = 5060 
-     defaultuser = user 
-     username = user 
-     fromuser = user 
-     secret = pass 
-     context = redirectchipcerto' > /etc/asterisk/chipcerto_sip.conf
+```
+```sh
+echo '
+[portabilidadecelular] 
+ type = peer 
+ fromdomain = sip.portabilidadecelular.com 
+ host = sip.portabilidadecelular.com 
+ port = 5060 
+ defaultuser = user 
+ username = user 
+ fromuser = user 
+ secret = pass 
+ context = redirectchipcerto' > /etc/asterisk/chipcerto_sip.conf
+```
+```sh
 echo '
 [operadoras] 
      55341 = Tim 
@@ -95,7 +101,8 @@ echo '
      username = admin 
      password = magnus 
 ' > /etc/asterisk/chipcerto.conf
-
+```
+```sh
 echo '
 [macro-destravaModem]
 exten => s,1,Set(TRUNK=${CDR(dstchannel):7:-11})
@@ -105,45 +112,67 @@ exten => s,n,Noop(DONGLE_STATUS: ${DONGLE_STATUS} - TRUNK_STATUS: ${TRUNK_STATUS
 exten => s,n,AGI(destravaModem.php,${TRUNK_STATUS},${DONGLE_STATUS},${TRUNK},1)
 exten => s,n,MacroExit
 ' >> /etc/asterisk/extensions.conf
+```
 
-4- INCLUIR OS ARQUIVOS NO ASTERISK
+### INCLUIR OS ARQUIVOS NO ASTERISK
+
+```sh
 echo '#include chipcerto_sip.conf' >> /etc/asterisk/sip.conf
 echo '#include chipcerto_extensions.conf ' >> /etc/asterisk/extensions.conf
 echo '#include chipcerto_extensions_in.conf ' >> /etc/asterisk/extensions.conf
 echo '#include chipcerto_dongle.conf ' >> /etc/asterisk/dongle.conf
+ ``` 
 
-
-5- BAIXAR O PAINEL. dentro do diretorio web. 
+### BAIXAR O PAINEL. dentro do diretorio web. 
 CentosOS /var/www/html
 Debian /var/www
-
+ ``` sh
 git clone https://github.com/magnusbilling/ChipCerto.git
-
+ ``` 
 6 - Dar permissao de escrita e leitura no diretorio /etc/asterisk para o usuario do apache.
 Se vc crirou o usuario asterisk na instalacao, voce pode mudar o user e group do apache.
 Use estes comandos:
+
 Em Centos:
+ ``` sh
 sed -i "s/User apache/User asterisk/" /etc/httpd/conf/httpd.conf
 sed -i "s/Group apache/Group asterisk/" /etc/httpd/conf/httpd.conf
+``` 
+
 Em Debian:
+ ``` sh
 sed -i 's/User User ${APACHE_RUN_USER}/User asterisk/' /etc/apache2/httpd.conf
-sed -i 's/Group User ${APACHE_RUN_GROUP}/Group asterisk/' /etc/apache2/httpd.conf
-
-6- REINCIAR O APACHE
+sed -i 's/Group User ${APACHE_RUN_GROUP}/Group asterisk/' /etc/apache2/httpd.conf 
+```
+### REINCIAR O APACHE
 Centos
+```sh
 service httpd restart
+```
 Debian
+``` sh
 service apache2 restart
+```
 
-7-Copiar o AGI para a pasta do asterisk
+### Copiar o AGI para a pasta do asterisk
 Centos
+```sh
 cp -rf /var/www/html/chipcerto/phpagi/* /var/lib/asterisk/agi-bin
+```
+
 Debian
+```sh
 cp -rf /var/www/chipcerto/phpagi/* /var/lib/asterisk/agi-bin
+```
 
-8- Permiçao do AGI
+### Permiçao do AGI
+```sh
 chmod +x /var/lib/asterisk/agi-bin/portabiliadecelular.php
+```
 
+>>Acesso seu painel em http://seu_ip/chipcerto
+
+>Usuário: admin | Senha: magnus
 
 Use o https://github.com/magnusbilling/ChipCerto/issues para informar erros.
 
