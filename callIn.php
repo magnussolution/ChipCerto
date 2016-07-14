@@ -82,6 +82,9 @@ $exten_in_File = '/etc/asterisk/chipcerto_extensions_in.conf';
          $extensions .= '
 exten => '.$value['exten'].',1,Dial(SIP/'.$value['destino'].')
   same => n,hangup()
+
+  exten => +'.$value['exten'].',1,Dial(SIP/'.$value['destino'].')
+  same => n,hangup()
          ';
 
       }

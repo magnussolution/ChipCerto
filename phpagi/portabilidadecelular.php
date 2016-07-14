@@ -26,7 +26,7 @@ require_once ('phpagi.php');
 $agi = new AGI();
 
 if ($argv[1] == 'destavaModem') {
-	require_once 'phpagi/phpagi-asmanager.php';
+	require_once 'phpagi-asmanager.php';
 	set_time_limit(10);
 	$tronco = $argv[2];
 	$dongle = $argv[3];
@@ -34,8 +34,9 @@ if ($argv[1] == 'destavaModem') {
   if( $dongle == 3 and $tronco == 0 ) {
   	$asmanager = new AGI_AsteriskManager;
   	$asmanager->connect('localhost', 'magnus', 'magnussolution');
+  	$agi->verbose("Destrava modem ".$modem,5);
   	$asmanager->Command("dongle stop now ".$modem);
-  	 sleep(1);
+  	sleep(1);
   	$asmanager->Command("dongle start ".$modem);
   }
 }else{
