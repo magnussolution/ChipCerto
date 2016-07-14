@@ -39,7 +39,7 @@ allow=alaw,ulaw,gsm
 context=chipcerto_in
 disable=no
 ```
-### Adicionar permissao para o /etc/asterisk/manager.conf
+### Adicionar Permissão para o /etc/asterisk/manager.conf
 ```sh
 [magnus]
 secret = magnussolution
@@ -165,7 +165,7 @@ Debian
 cp -rf /var/www/chipcerto/phpagi/* /var/lib/asterisk/agi-bin
 ```
 
-### Permiçao do AGI
+### Permissão do AGI
 ```sh
 chmod +x /var/lib/asterisk/agi-bin/portabiliadecelular.php
 ```

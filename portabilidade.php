@@ -135,6 +135,7 @@ $operadorasConfig = parse_ini_file($operadorasFile,true);
          <td>
             <div style="padding:5px">
                <table border="0" cellpadding="0" cellspacing="0" width="99%">
+                 
                   <tr>
                      <td colspan="2" class="title2" height="25" >PORTABILIDADE</td>
                   </tr>
@@ -214,6 +215,7 @@ $operadorasConfig = parse_ini_file($operadorasFile,true);
                                                                         
                                                                </td>
                                                             </tr>
+
                                                          </table>
                                                       </div>
                                                    </td>
@@ -228,6 +230,9 @@ $operadorasConfig = parse_ini_file($operadorasFile,true);
                                        </div>
                                     </form>
                                  </td>
+                              </tr>
+                              <tr id="saldoPortabilidade" style="display: none;" >
+                                 <td colspan="2" class="title2" height="25" ></td>
                               </tr>
                            </table>
                         </div>
@@ -253,10 +258,34 @@ $operadorasConfig = parse_ini_file($operadorasFile,true);
     document.getElementById("mysqlPass").style.display = "table-row";
     document.getElementById("mysqlDB").style.display = "table-row";
    }else{
+    getSaldo();
     document.getElementById("mysqlUser").style.display = "none";
     document.getElementById("mysqlPass").style.display = "none";
     document.getElementById("mysqlDB").style.display = "none";
    };
+
+   function getSaldo()
+    {
+
+      xmlhttp=new XMLHttpRequest();
+      xmlhttp.onreadystatechange=function()
+      {
+          if (xmlhttp.readyState==4 && xmlhttp.status==200)
+          {
+             document.getElementById("saldoPortabilidade").style.display = "inline";
+             if (xmlhttp.responseText < 500)
+              document.getElementById("saldoPortabilidade").innerHTML = '<font color=red>Voçê tem '+xmlhttp.responseText+' consultas restantes </font><button onclick="window.open(\'https://www.portabilidadecelular.com\',\'_blank\')" class="button">Comprar mais</button>';
+            else
+               document.getElementById("saldoPortabilidade").innerHTML = 'Voçê tem '+xmlhttp.responseText+' consultas restantes';
+          
+          }
+      }
+
+      xmlhttp.open("POST","http://portabilidadecelular.com/painel/consulta_numero.php?user=<?php echo $operadorasConfig['portabilidade']['username']?>&pass=<?php echo $operadorasConfig['portabilidade']['password']?>&seache_number=&credito",true);
+      xmlhttp.send();
+     
+    }
+
 
   }
 
