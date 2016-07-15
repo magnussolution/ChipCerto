@@ -141,8 +141,8 @@ sed -i "s/Group apache/Group asterisk/" /etc/httpd/conf/httpd.conf
 
 Em Debian:
  ``` sh
-sed -i 's/User User ${APACHE_RUN_USER}/User asterisk/' /etc/apache2/httpd.conf
-sed -i 's/Group User ${APACHE_RUN_GROUP}/Group asterisk/' /etc/apache2/httpd.conf 
+sed -i 's/User User ${APACHE_RUN_USER}/User asterisk/' /etc/apache2/apache2.conf
+sed -i 's/Group User ${APACHE_RUN_GROUP}/Group asterisk/' /etc/apache2/apache2.conf 
 ```
 ### REINCIAR O APACHE
 Centos
@@ -167,7 +167,7 @@ cp -rf /var/www/chipcerto/phpagi/* /var/lib/asterisk/agi-bin
 
 ### Permissão do AGI
 ```sh
-chmod +x /var/lib/asterisk/agi-bin/portabiliadecelular.php
+chmod +x /var/lib/asterisk/agi-bin/portabilidadecelular.php
 ```
 
 >>Acesso seu painel em http://seu_ip/chipcerto
