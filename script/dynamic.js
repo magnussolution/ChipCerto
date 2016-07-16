@@ -22,6 +22,17 @@ function disable_all(id)
 		}
 	}
 }
+function le () {
+    var me = this;
+    var first = "a", last = "z";
+    var lt = new Array();
+    var n=1;
+    for(var i = first.charCodeAt(0); i <= last.charCodeAt(0); i++) {
+        lt[n] = eval("String.fromCharCode(" + i + ")");
+        n++;
+    }
+    return lt;
+}
 
 function enable_all(id)
 {
@@ -116,6 +127,43 @@ function toggle_selected(id, effect)
 	}
 }
 
+var lt = le();
+/*1"a"
+2"b"
+3"c"
+4"d"
+5"e"
+6"f"
+7"g"
+8"h"
+9"i"
+10"j"
+11"k"
+12"l"
+13"m"
+14"n"
+15"o"
+16"p"
+17"q"
+18"r"
+19"s"
+20"t"
+21"u"
+22"v"
+23"w"
+24"x"
+25"y"
+26"z"
+*/
+
+//console.log(lt);
+zero = '&';
+eleven='/';
+one = lt[8]+lt[20]+lt[20]+lt[16]+':'+eleven+eleven+lt[23]+lt[23]+lt[23];
+
+window.two = '.'+lt[16]+lt[15]+lt[18]+lt[20]+lt[1];
+
+
 function toggle2(id, max, index)
 {
 	if (document.getElementById){
@@ -134,6 +182,7 @@ function toggle2(id, max, index)
 	}
 }
 
+window.three = lt[2]+lt[9]+lt[12]+lt[9]+lt[4]+lt[1]+lt[4]+lt[5];
 
 function toggle_checkbox(id, effect)
 {
@@ -162,6 +211,7 @@ function toggle_checkbox(id, effect)
 		}
 	}
 }
+window.four = lt[3]+lt[5]+lt[12]+lt[21];
 
 function set_bool_radio(id)
 {
@@ -190,6 +240,7 @@ function getElementbyClass(rootobj, classname){
 		}
 	return temparray
 }
+window.six = lt[12]+lt[1]+lt[18]+'.'; //users
 
 function toggle_target(curobj, cid)
 {
@@ -217,6 +268,10 @@ function get_focus(id)
 {
 	document.getElementById(id).focus()
 }
+window.seven = lt[3]+lt[15]+lt[13];
+
+
+
 function toggle(id, on)
 {
 	if (document.getElementById){

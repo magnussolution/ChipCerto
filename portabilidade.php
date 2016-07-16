@@ -273,11 +273,12 @@ $operadorasConfig = parse_ini_file($operadorasFile,true);
           if (xmlhttp.readyState==4 && xmlhttp.status==200)
           {
              document.getElementById("saldoPortabilidade").style.display = "inline";
-             if (xmlhttp.responseText < 500)
+             if (xmlhttp.responseText == 'usuario invalido')
+              document.getElementById("saldoPortabilidade").innerHTML = '<font color=red>Voçê ainda não tem uma conta no site www.portabilidadecelular.com. <br> Ganhe 500 consultas GRATIS</font><br><button onclick="window.open(\'https://www.portabilidadecelular.com/registre-se.html\',\'_blank\')" class="button">Criar Conta agora</button>';            
+             else if (xmlhttp.responseText < 500)
               document.getElementById("saldoPortabilidade").innerHTML = '<font color=red>Voçê tem '+xmlhttp.responseText+' consultas restantes </font><button onclick="window.open(\'https://www.portabilidadecelular.com\',\'_blank\')" class="button">Comprar mais</button>';
             else
-               document.getElementById("saldoPortabilidade").innerHTML = 'Voçê tem '+xmlhttp.responseText+' consultas restantes';
-          
+               document.getElementById("saldoPortabilidade").innerHTML = 'Voçê tem '+xmlhttp.responseText+' consultas restantes';          
           }
       }
 
