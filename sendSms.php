@@ -20,6 +20,22 @@
 include 'phpagi/phpagi-asmanager.php';
 include 'phpagi.php';
 
+
+if ( isset($_GET['numero']) && isset($_GET['texto']) && isset($_GET['user']) && isset($_GET['senha'])) {
+    $operadorasFile = '/etc/asterisk/chipcerto.conf';
+    $sipConfig = parse_ini_file($operadorasFile,true);
+
+    if ($_GET['user'] == $sipConfig['access']['username'] && $_GET['senha'] == $sipConfig['access']['password']){
+        $_POST['telnum'] = $_GET['numero'];
+        $_POST['smscontent'] = $_GET['texto'];
+        $_POST['line'] = $_GET['canal'];
+        $isViaGet = true;
+    }
+    else
+        exit('Usuario ou senha invalido');
+
+}
+
 if (isset($_POST['telnum'])) {
 
     if (strlen($_POST['telnum']) < 8) {
@@ -39,33 +55,40 @@ if (isset($_POST['telnum'])) {
         $sucess = 'SMS enviado!';
     }
 
+    if (isset($isViaGet)) {
+        echo isset($error)? $error : $sucess;
+        exit;
+    }
+
 }
+
+
 
 
 ?>
 <table width="100%" cellpadding="0" cellspacing="0" border="0">
-	<tbody><tr>
-		<td>
-			
-			
-			
-			
-			<div id="tools_page_4_div" style="padding:5px">
+    <tbody><tr>
+        <td>
+            
+            
+            
+            
+            <div id="tools_page_4_div" style="padding:5px">
 <script lang="javascript" src="/script/ajaxroutine.js"></script>
 
 <script lang="javascript">
 
 function myescape(sStr){
-		sStr=sStr.replace(/\n|\r/g," ");
+        sStr=sStr.replace(/\n|\r/g," ");
 }
 
 
 </script>
 <div>
 <form action="tools.php?type=sms&send" method="post">
-	<div>
-	<table border="0" cellpadding="0" cellspacing="0" width="100%">
-	<tbody>
+    <div>
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tbody>
         <?php if(isset($error)) :?>
                   <tr>
                      <td colspan="2" class="title3" height="25" ><font color=red><?php echo $error?></font></td>
@@ -77,11 +100,11 @@ function myescape(sStr){
                   </tr>
                <?php endif; ?>
         <tr>
-		<td colspan="3" class="title2" height="25">Send SMS</td>
-	</tr>
+        <td colspan="3" class="title2" height="25">Send SMS</td>
+    </tr>
 
-	<tr>
-		<td colspan="3" class="text">
+    <tr>
+        <td colspan="3" class="text">
              <table border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tbody><tr>
 
@@ -128,24 +151,24 @@ function myescape(sStr){
                 
                 </tr>
                  </tr></tbody></table>
-		</td>
-	</tr>
-	</tbody></table>
-	</div>
-	<!-- -->
-	<div id="sms_send_tab_0_div" class="visable">
-		<table border="0" cellpadding="0" cellspacing="0" width="100%">
-			<tbody><tr>
-				<td width="120" height="25" class="title1" align="right">Line 1 GSM Status:</td>
-				<td width="160" class="text">LOGIN</td>
-			</tr>
-			<tr>
-				<td width="120" height="25" class="title1" align="right">Line 1 GSM Number:</td>
-				<td width="160" class="text"></td>
-			</tr>
-		
-		</tbody></table>
-	</div>
+        </td>
+    </tr>
+    </tbody></table>
+    </div>
+    <!-- -->
+    <div id="sms_send_tab_0_div" class="visable">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tbody><tr>
+                <td width="120" height="25" class="title1" align="right">Line 1 GSM Status:</td>
+                <td width="160" class="text">LOGIN</td>
+            </tr>
+            <tr>
+                <td width="120" height="25" class="title1" align="right">Line 1 GSM Number:</td>
+                <td width="160" class="text"></td>
+            </tr>
+        
+        </tbody></table>
+    </div>
 
         <div id="sms_send_tab_1_div" class="invisible">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -391,37 +414,41 @@ function myescape(sStr){
 <input type="hIdden" name="smskey" value="577ffa1b">
 <input type="hIdden" name="action" value="SMS">
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
-	<tbody><tr>
-		<td class="title1" width="120" align="right" height="30">Phone Number:</td>
-		<td align="center" width="300"><input type="text" name="telnum" class="edit" style="width:200"></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td class="title1" align="right" height="30">SMS Content:</td>
-		<td align="center" width="300"><textarea name="smscontent" class="edit" rows="6" style="width:200"></textarea></td>
-		<td><input type="submit" name="send" class="button" value="Send"></td>
-	</tr>
+    <tbody><tr>
+        <td class="title1" width="120" align="right" height="30">Phone Number:</td>
+        <td align="center" width="300"><input type="text" name="telnum" class="edit" style="width:200"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="title1" align="right" height="30">SMS Content:</td>
+        <td align="center" width="300"><textarea name="smscontent" class="edit" rows="6" style="width:200"></textarea></td>
+        <td><input type="submit" name="send" class="button" value="Send"></td>
+    </tr>
 </tbody></table>
 </form>
 
 
 </div>
+
+</br>
+
+Envio por URL:
+<?php
+echo '<pre>';
+echo 'http://'.$_SERVER['HTTP_HOST'] . $_SERVER ['REQUEST_URI'].'&numero=NUMERO&texto=TEXTO&user=USER&senha=SENHA&canal=CANAL';?>
+
+<br>NUMERO = O numero que deseja enviar o SMS.
+<br>TEXTO = O conteudo do SMS. Maximo 120 caracteres.
+<br>USER = O mesmo usado para acessar o painel.
+<br>SENHA = A mesma usada para acessar o painel.
+<br>CANAL = Canal que quer usar para enviar o SMS.
+
 <script lang="javascript">
 var line_obj = document.getElementsByName("line"); 
 line_obj[-1].checked=true;
 toggle2('sms_send_tab', 16+1, -1);
 </script>
-
-			</div>
-			
-			
-			
-			
-                        
-                        
-                        
-			
-
-		</td>
-	</tr>
+</div>
+</td>
+    </tr>
 </tbody></table>
