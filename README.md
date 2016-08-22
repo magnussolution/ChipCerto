@@ -170,6 +170,11 @@ cp -rf /var/www/chipcerto/phpagi/* /var/lib/asterisk/agi-bin
 chmod +x /var/lib/asterisk/agi-bin/portabilidadecelular.php
 ```
 
+### Permissão para criar as sessions do PHP
+```sh
+chown -R asterisk:asterisk /var/lib/php/session/
+```
+
 >>Acesso seu painel em http://seu_ip/chipcerto
 
 >Usuário: admin | Senha: magnus
