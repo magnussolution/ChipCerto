@@ -106,7 +106,7 @@ if (document.getElementById){
 
 					</td>
 					<td width="828" vAlign="top" class="content">
-<script lang="javascript" src="/script/ajaxroutine.js"></script>	  
+  
 <script lang="javascript">
 
 function getElementText(elem)

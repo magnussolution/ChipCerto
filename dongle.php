@@ -25,6 +25,13 @@ if (isset($_GET['sim_exp_reset'])) {
   $server = $asmanager->Command("dongle reset ".$_GET['line']);
 }
 
+if (isset($_GET['reload']) && $_GET['reload'] == 1) {
+  $asmanager = new AGI_AsteriskManager;
+  $asmanager->connect('localhost', 'magnus', 'magnussolution');
+  $server = $asmanager->Command("dongle reload now");
+  echo '<script lang="javascript">alert(\'Dongle Reload sucesso!\')</script>';
+}
+
 $configFile = '/etc/asterisk/chipcerto_dongle.conf';
 $dongleConfig = parse_ini_file($configFile,true);
 
@@ -213,12 +220,7 @@ if (isset($_GET['add'])){
                                                                                  <input type="text" name="txgain" id="sip_registrar" value="<?php echo $dongleConfig[$name]['txgain']?>" class="edit">
                                                                               </td>
                                                                            </tr>
-                                                                           <tr>
-                                                                              <td width="120" height="25" class="title1">Codecs</td>
-                                                                              <td width="160" class="text">
-                                                                                 <input type="text" name="allow" id="sip_registrar" value="<?php echo $dongleConfig[$name]['allow']?>" class="edit">
-                                                                              </td>
-                                                                           </tr>
+                                                                           
                                                                            
                                                                            
                                                                            
@@ -308,6 +310,11 @@ if (isset($_GET['add'])){
                               </tr>
                               <?php endforeach;?>
                         
+                           </table>
+                           <table>
+                            <tr>
+                              <td height="25" class="text2" align="center"><input type="button" name="reload_dongle" class="button" value="Reload" onclick="window.location.href='config.php?type=dongle&reload=1'"></td>       
+                            </tr>
                            </table>
                         </div>
                      </td>

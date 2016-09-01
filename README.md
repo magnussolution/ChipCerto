@@ -102,17 +102,6 @@ echo '
      password = magnus 
 ' > /etc/asterisk/chipcerto.conf
 ```
-```sh
-echo '
-[macro-destravaModem]
-exten => s,1,Set(TRUNK=${CDR(dstchannel):7:-11})
-exten => s,n,Set(TRUNK_STATUS=${SHELL(asterisk rx "core show channels" | grep ${TRUNK} | wc -l)})
-exten => s,n,dongleStatus(${TRUNK},DONGLE_STATUS)
-exten => s,n,Noop(DONGLE_STATUS: ${DONGLE_STATUS} - TRUNK_STATUS: ${TRUNK_STATUS})
-exten => s,n,AGI(destravaModem.php,${TRUNK_STATUS},${DONGLE_STATUS},${TRUNK},1)
-exten => s,n,MacroExit
-' >> /etc/asterisk/extensions.conf
-```
 
 ### INCLUIR OS ARQUIVOS NO ASTERISK
 
@@ -173,6 +162,7 @@ chmod +x /var/lib/asterisk/agi-bin/portabilidadecelular.php
 ### Permissão para criar as sessions do PHP
 ```sh
 chown -R asterisk:asterisk /var/lib/php/session/
+chown -R asterisk:asterisk /etc/asterisk
 ```
 
 >>Acesso seu painel em http://seu_ip/chipcerto

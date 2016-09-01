@@ -92,8 +92,9 @@ $operadorasConfig = parse_ini_file($operadorasFile,true);
          $prefix = preg_replace("/ /", "", $prefix);
 
           if ($key == '553') {
-              $extensions .= 'exten => _55[3,9]99.,1,Dial('.$_POST['canal'].')
-              same => n,hangup()';
+              $extensions .= 'exten => _55[3,9]X.,1,Dial('.$_POST['canal'].')
+              same => n,hangup()
+              ';
           }else{
 
 
@@ -116,7 +117,13 @@ $operadorasConfig = parse_ini_file($operadorasFile,true);
 
        $extensions .= '
        
-       exten => h,1,Macro(destravaModem,${CALLERID(num)},${EXTEN},${UNIQUEID})
+       exten => h,1,Agi(portabilidadecelular.php,destavaModem)
+
+
+        exten => _55998.,1,Wait(1)
+        same => n,Answer()
+        same => n,Playback(ChipCertoCredito)
+        same => n,Hangup()
 
        ';
       if ($operadorasConfig['portabilidade']['type'] == 'sip') {
@@ -161,15 +168,6 @@ same => n,Hangup()';
 
 }
 
-$extensions .= '
-
-[macro-destravaModem]
-exten => s,1,Set(TRUNK=${CDR(dstchannel):7:-11})
-  same=> n,Set(TRUNK_STATUS=${SHELL(asterisk rx "core show channels" | grep ${TRUNK} | wc -l)})
-  same=> n,dongleStatus(${TRUNK},DONGLE_STATUS)
-  same=> n,Agi(portabilidadecelular.php,destavaModem,${TRUNK_STATUS},${DONGLE_STATUS},${TRUNK},1)
-  same=> n,MacroExit
-';
        // print_r($extensions);
        $fp = fopen('/etc/asterisk/chipcerto_extensions.conf', 'w');
        fwrite($fp, $extensions);

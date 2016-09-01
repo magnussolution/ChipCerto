@@ -26,19 +26,31 @@ require_once ('phpagi.php');
 $agi = new AGI();
 
 if ($argv[1] == 'destavaModem') {
-	require_once 'phpagi-asmanager.php';
-	set_time_limit(10);
-	$tronco = $argv[2];
-	$dongle = $argv[3];
-	$modem = $argv[4];
-  if( $dongle == 3 and $tronco == 0 ) {
-  	$asmanager = new AGI_AsteriskManager;
-  	$asmanager->connect('localhost', 'magnus', 'magnussolution');
-  	$agi->verbose("Destrava modem ".$modem,5);
-  	$asmanager->Command("dongle stop now ".$modem);
-  	sleep(1);
-  	$asmanager->Command("dongle start ".$modem);
-  }
+	
+	$canalOrinem = $agi->request['agi_channel'];
+	$agi->verbose('Canal de origem '.$canalOrinem,5);
+
+	$state_channel = $agi->channel_status($agi->request['agi_channel']);
+	$state_channel = $state_channel['data'];
+	$agi->verbose('Estatus do canal '.$state_channel,5);
+
+	$dongle = $agi->get_variable("CDR(dstchannel)");
+	$dongle = substr($dongle['data'], 7 ,-11);
+	$agi->verbose('Dongle de destino '.$dongle,5);
+
+	$dongleStatus = $agi->exec('dongleStatus', trim("$dongle,DONGLE_STATUS", ','));
+	$dongleStatus = $agi->get_variable("DONGLE_STATUS");
+	$dongleStatus = $dongleStatus['data'];
+	$agi->verbose('Estatus do Dongle '.$dongleStatus);
+  	if( $dongleStatus == 3 && $state_channel == 'Line is up' ) {
+  		require_once 'phpagi-asmanager.php';
+		$asmanager = new AGI_AsteriskManager;
+		$asmanager->connect('localhost', 'magnus', 'magnussolution');
+		$agi->verbose("Destrava modem ".$dongle,5);
+		$asmanager->Command("dongle stop now ".$dongle);
+		sleep(1);
+		$asmanager->Command("dongle start ".$dongle);
+	}
 }else{
 	$destination = $argv[1];
 
