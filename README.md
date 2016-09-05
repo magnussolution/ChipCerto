@@ -146,12 +146,14 @@ service apache2 restart
 ### Copiar o AGI para a pasta do asterisk
 Centos
 ```sh
-cp -rf /var/www/html/chipcerto/phpagi/* /var/lib/asterisk/agi-bin
+cp -rf /var/www/html/ChipCerto/phpagi/* /var/lib/asterisk/agi-bin
+cp -rf /var/www/html/ChipCerto/phpagi/ChipCertoCredito.gsm /var/lib/asterisk/sounds
 ```
 
 Debian
 ```sh
-cp -rf /var/www/chipcerto/phpagi/* /var/lib/asterisk/agi-bin
+cp -rf /var/www/ChipCerto/phpagi/* /var/lib/asterisk/agi-bin
+cp -rf /var/www/ChipCerto/phpagi/ChipCertoCredito.gsm /var/lib/asterisk/sounds
 ```
 
 ### Permissão do AGI
@@ -165,7 +167,7 @@ chown -R asterisk:asterisk /var/lib/php/session/
 chown -R asterisk:asterisk /etc/asterisk
 ```
 
->>Acesso seu painel em http://seu_ip/chipcerto
+>Acesso seu painel em http://seu_ip/ChipCerto
 
 >Usuário: admin | Senha: magnus
 
