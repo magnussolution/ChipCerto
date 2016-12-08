@@ -18,6 +18,6 @@
  * 14/07/2016
  */
 //http://asterisk-service.com/page/chan-dongle-use
-
+echo "olá";
 header('Location: status.php');
 ?>
