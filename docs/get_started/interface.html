@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface &#8212; MagnusBilling Wiki source documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="alternate" hreflang="en" href="http://docs.godotengine.org/en/" />
+    <link rel="alternate" hreflang="de" href="http://docs.godotengine.org/de/" />
+    <link rel="alternate" hreflang="es" href="http://docs.godotengine.org/es/" />
+    <link rel="alternate" hreflang="fr" href="http://docs.godotengine.org/fr/" />
+    <link rel="alternate" hreflang="ko" href="http://docs.godotengine.org/ko/" />
+    <link rel="alternate" hreflang="pl" href="http://docs.godotengine.org/pl/" />
+    <link rel="alternate" hreflang="pt-br" href="http://docs.godotengine.org/pt-br/" />
+    <link rel="alternate" hreflang="uk" href="http://docs.godotengine.org/uk/" />
+    <link rel="alternate" hreflang="zh-cn" href="http://docs.godotengine.org/zh-cn/" />
+    <link rel="alternate" hreflang="x-default" href="http://docs.godotengine.org/" />    
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Backup" href="backup.html" />
+    <link rel="prev" title="Instalação" href="quick_install.html" />
+
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="interface">
+<h1>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h1>
+<p>A interface do MagnusBilling é uma interface padrão do EXTJS, sendo formada por:
+Menu lateral, contendo todos os módulos, divididos em submódulos ordenados por categoria.
+Areá principal, onde é exibidos os módulos abertos, mostrados em abas ativas e inativas.
+Menu superior, com opções de idioma, botões alterar senha, ajuda e sair do sistema.</p>
+<div class="section" id="barra-de-status-do-servidor">
+<h2>Barra de status do servidor<a class="headerlink" href="#barra-de-status-do-servidor" title="Permalink to this headline">¶</a></h2>
+<p>Na parte inferior, esta barra somente é mostrada na aba Home. barra de status do servidor</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Quantidade de processadores</p></li>
+<li><p>Modelo do processador</p></li>
+<li><p>Uso atual do processador</p></li>
+<li><p>Media de uso do processador</p></li>
+<li><p>Memoria total do servidor</p></li>
+<li><p>Memoria em uso</p></li>
+<li><p>Consumo do link upload</p></li>
+<li><p>Consumo do link download</p></li>
+<li><p>Tempo que o servidor esta Up</p></li>
+<li><p>Botão para dar reload no Asterisk</p></li>
+</ul>
+</div></blockquote>
+<a class="reference internal image-reference" href="../_images/barra.png"><img alt="../_images/barra.png" src="../_images/barra.png" style="width: 905.25px; height: 28.9px;" /></a>
+</div>
+<div class="section" id="barra-de-botoes">
+<h2>Barra de botões<a class="headerlink" href="#barra-de-botoes" title="Permalink to this headline">¶</a></h2>
+<p>O MagnusBilling é um sistema modular, cada menu ou sub-menu corresponde a um modulo. Todos os módulos são idênticos em sua estrutura.
+Cada modulo é composto por uma barra de ferramentas composto por estes botões:</p>
+<p>Barra de botões dos módulos</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Botão Adicionar.</dt><dd><p>Adicionar um novo registro ao módulo.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Botão Editar.</dt><dd><p>Editar um registro, somente clicando sobre um registro, já é aberto do formulário para editar.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Botão Excluir.</dt><dd><p>Ao selecionar um ou mais registros e clicando em Excluir, sera solicitado a confirmação e sendo confirmado, sera excluído o registro.
+O botão excluir tem uma propriedade chamada Todos, encontrada ao clicar sobre a flecha ao lado do botão, esta propriedade exclui todos os registros listados no modulo. Propriedade muito útil para excluir grande quantidade de dados.
+<strong>OBS</strong>: O banco de dados do MagnusBilling usa InnoDB com foreign key, isso relaciona todos os dados, por tanto, não é possível excluir dados que estão relacionados com outro. EX: Não é possível excluir um cliente, se este cliente tem um pagamento realizado, caso seja necessário excluir o cliente, primeiro tem que ser excluído todos os registros relacionados a este cliente.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Botão Atualizar em Lote.</dt><dd><p>Este botão é fundamental para uso eficiente do sistema. Este botão é usado, como sugere o nome, para atualizar vários registros ao mesmo tempo, facilitando uma tarefa que seria impossível de ser realizada manualmente em módulos com muitos registros, como o modulo tarifas que pode facilmente passar dos 100 mil registros. O uso é bastante simples, basta buscar os registros que se queira atualizar, e clicar no botão Atualizar em Lote, abrira o formulário de edição com todos os campos em branco, altere somente os campos que queira atualizara, deixando o restante em branco, e clique em salvar, este processo pode demorar alguns segundos, e atualizara todos os registros.
+O botão Atualizar em Lote tem uma propriedade chamada Selecionados, encontrada ao clicar sobre a flecha ao lado do botão, esta propriedade ira atualizar só os registros selecionados.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Botão Imprimir</dt><dd><p>Este botão gera um Excel no formato CSV dos registros selecionados.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Botão Imprimir</dt><dd><p>Este botão gera um PDF dos registros selecionados.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Botão Limpar Filtros</dt><dd><p>Este botão limpa os filtros realizados.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/buttons.png"><img alt="../_images/buttons.png" src="../_images/buttons.png" style="width: 869.55px; height: 31.45px;" /></a>
+</div>
+<div class="section" id="colunas">
+<h2>Colunas<a class="headerlink" href="#colunas" title="Permalink to this headline">¶</a></h2>
+<p>Cada coluna do MagnusBilling tem varias opções muito útil para o bom uso do sistema.</p>
+<p>Para encontrar estas opções coloque o mouse sobre a coluna desejada, e clique na flecha.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Ordem Ascendente e Descendente.</dt><dd><p>Classifica os registros pela coluna seleciona de forma ascendente ou descendente. Esta opção também pode ser usada clicando sobre a coluna.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Colunas.</dt><dd><p>Com esta opção se pode mostrar ou ocultar colunas, muito útil para mostrar somente dados necessários, exemplo, para gerar uma tabela de preço para enviar a um cliente contendo somente o nome do destino e o preço de venda.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Agrupar por Esta Coluna.</dt><dd><p>Agrupa os registros por esta coluna, muito útil para o modulo Chamadas Online, podendo agrupar as ligações por cliente, para poder ver separadamente as ligações de um cliente, ou de qualquer outra coluna.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Exibir em Grupos.</dt><dd><p>Esta opção é usada para desativar a opção anterior.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Filtro</dt><dd><p>Esta opção também é de fundamental entendimento, por tanto será escrito um tutorial exclusivo.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/colluns.png"><img alt="../_images/colluns.png" src="../_images/colluns.png" style="width: 1143.25px; height: 28.05px;" /></a>
+</div>
+<div class="section" id="sistema-de-filtro">
+<h2>Sistema de Filtro<a class="headerlink" href="#sistema-de-filtro" title="Permalink to this headline">¶</a></h2>
+<p>O MagnusBilling conta com um poderoso sistema de filtro para encontrar os registros desejados em cada modulo.</p>
+<p>Para encontrar esta opções coloque o mouse sobre a coluna que deseja realizar a busca, e clique na flecha, deslizar ate Filtro, abrira o sub-menu contendo as opções para a coluna, continue deslizando o mouse ate o campo e coloque o valor que deseja buscar e aperte Enter.
+OSB: O sistema de filtro é case sensitive.</p>
+<p>Existe tipos de filtro dependendo do tipo dos dados da coluna:</p>
+<ul>
+<li><p>Filtro por texto.</p>
+<blockquote>
+<div><p>Este filtro encontra dados em colunas com texto que inicia com, termina com, contém ou que seja igual a. Por exemplo, buscar um cliente que tem o nome que Inicia com ‘José’, sera listado todos os clientes que tem nome que inicia com José.</p>
+</div></blockquote>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/filter_text.png"><img alt="../_images/filter_text.png" src="../_images/filter_text.png" style="width: 253.29999999999998px; height: 233.75px;" /></a>
+<ul>
+<li><p>Filtro por números inteiros.</p>
+<blockquote>
+<div><p>Este filtro sera mostrado em colunas que contem valores numéricos, como a coluna crédito de um cliente.</p>
+</div></blockquote>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/filter_int.png"><img alt="../_images/filter_int.png" src="../_images/filter_int.png" style="width: 289.84999999999997px; height: 210.79999999999998px;" /></a>
+<ul>
+<li><p>Filtro por datas.</p>
+<blockquote>
+<div><p>Este filtro sera mostrado em colunas que contem datas, este filtro é muito útil nos relatórios.</p>
+</div></blockquote>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/filter_date.png"><img alt="../_images/filter_date.png" src="../_images/filter_date.png" style="width: 319.59999999999997px; height: 213.35px;" /></a>
+<ul>
+<li><p>Filtro combo.</p>
+<blockquote>
+<div><p>Este filtro é usando em casos de relacionamento entre módulos.</p>
+</div></blockquote>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/filter_combo.png"><img alt="../_images/filter_combo.png" src="../_images/filter_combo.png" style="width: 360.4px; height: 368.05px;" /></a>
+<p>Para desfazer um filtro, tire a seleção do menu filtro, e para limpara todos os filtros aplicado a um módulo, clique no botão Limpar Filtros.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/docs_logo.png" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="../index.html">MagnusBilling Wiki</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Primeiros passos</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quick_install.html">Instalação</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backup.html">Backup</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Segurança</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../firewall/iptables.html">Iptables</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Usuarios</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../users/users.html">Criar um usuário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../campaign/startingdate.html">Data de inicio</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="quick_install.html" title="previous chapter">Instalação</a></li>
+      <li>Next: <a href="backup.html" title="next chapter">Backup</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2005-2020, MagnusSolution.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/get_started/interface.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

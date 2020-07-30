@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar um usuário &#8212; MagnusBilling Wiki source documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="alternate" hreflang="en" href="http://docs.godotengine.org/en/" />
+    <link rel="alternate" hreflang="de" href="http://docs.godotengine.org/de/" />
+    <link rel="alternate" hreflang="es" href="http://docs.godotengine.org/es/" />
+    <link rel="alternate" hreflang="fr" href="http://docs.godotengine.org/fr/" />
+    <link rel="alternate" hreflang="ko" href="http://docs.godotengine.org/ko/" />
+    <link rel="alternate" hreflang="pl" href="http://docs.godotengine.org/pl/" />
+    <link rel="alternate" hreflang="pt-br" href="http://docs.godotengine.org/pt-br/" />
+    <link rel="alternate" hreflang="uk" href="http://docs.godotengine.org/uk/" />
+    <link rel="alternate" hreflang="zh-cn" href="http://docs.godotengine.org/zh-cn/" />
+    <link rel="alternate" hreflang="x-default" href="http://docs.godotengine.org/" />    
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Data de inicio" href="../campaign/startingdate.html" />
+    <link rel="prev" title="Iptables" href="../firewall/iptables.html" />
+
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="criar-um-usuario">
+<h1>Criar um usuário<a class="headerlink" href="#criar-um-usuario" title="Permalink to this headline">¶</a></h1>
+<p>Adicionar novas contas de usuários a <a class="reference external" href="https://www.magnusbilling.com">MagnusBilling</a> .</p>
+<p>Nos dirigimos ao Menú Usuarios &gt;&gt; Usuarios &gt;&gt; Novo. Encontramos os campos:</p>
+<ul class="simple">
+<li><p>Usuario: Ingresamos o nome de usuário (Podemos selecionar para que <a class="reference external" href="https://www.magnusbilling.com">MagnusBilling</a> . gere este dado de manera automática, desde o Menú Configuraçōes &gt;&gt; Configuraçōes &gt;&gt; Username auto generate, como assim también podemos escolher que se coloque um prefixo e a quantidade de caracteres). É recomendable colocar um nome de usuário formado por números e não  por letras.</p></li>
+<li><p>Senha: A senha sempre se genera de manera automática, mas pode ser modificada posteriormente pelo Administrador, o inclusive pelo o usuário, se o usuário tem as permissōes correspondentes.</p></li>
+<li><p>Grupo: Este campo indica a que grupo vai pertencer o usuário. Por padrão <a class="reference external" href="https://www.magnusbilling.com">MagnusBilling</a> . tem 3 grupos: Administrador, Agente e Cliente; mas se poden criar e generar novos. Cada uno com os permissōes deseados. É recomendable não  modificar os grupos que trae <a class="reference external" href="https://www.magnusbilling.com">MagnusBilling</a> . por padrão.</p></li>
+<li><p>Grupo para clientes do Agente: Em caso de que se selecione um Grupo de Agente, mem este campo se poderá escolher a que grupo vão pertencer os usuário creados por este agente.</p></li>
+<li><p>Idioma: Se deve selecionar o idioma do usuário.</p></li>
+<li><p>Plano: Este campo indica a que planoo vai pertencer este usuário, por tanto qual será os valores que vai pagar pelas chamadas, ja que cada plano, tem suas tarifas.</p></li>
+<li><p>DDD: Neste campo podemos gerar um plano de marcado específico para cada usuário. O formato é o seguinte:</p></li>
+</ul>
+<p>Exemplo de plano de discagem: 0/55,*/5511/8,*/5511/9</p>
+<p>As regras devem estar separadas por virgula (,) e estão compostas por tres termino separados por “/”. O primeiro termino indica o número a encontrar e ser alterado, o segundo por qual deve ser reemplazado, o terceiro é a longitude do número.</p>
+<p>Exemplo 1: 15/54911/10. Número que inicia com 15 e tenha uma longitud de 10 dígitos, se deve trocar o 15 pelo 54911. Número 1561333612 &gt;&gt; inicia com 15 e tem 10 dígitos = 5491161333612</p>
+<p>Exemplo 2: 0342/54342/11. Número que inicia com 0342 e tenha uma longitud de 11 dígitos, alterar o 0342 pelo 54342. Número 03424742900 &gt;&gt; inicia com 0342 e tem 11 dígitos = 543424742900</p>
+<ul class="simple">
+<li><p>Ativo: Ativamos o desativamos este usuário, si se encontra desativado, não podera ingressar ao sistema.</p></li>
+<li><p>Pacotes gratis: Este campo indica si o usuário tem ativado algum pacte gratis.</p></li>
+</ul>
+<p>Tab dados pessoais: Se poderá adicionar informação detalhada do usuário.</p>
+<p>Tab Adicional</p>
+<ul class="simple">
+<li><p>Tipo de pagamento: Pré-pago o Pós-pago.</p></li>
+<li><p>Limite de crédito: Caso de selecionar Pós-pago, se poderá selecionar o límite de crédito com o qual o usuário poderá realizar chamadas.</p></li>
+<li><p>Ativar vencimiento: Para ativar o vencimiento do crédito. Ao chegar no limite, o usuário sera desativado.</p></li>
+<li><p>Vence: Indicar a fecha de caducidad.</p></li>
+<li><p>Aviso saldo baixo: Envía alertas por email ao usuário quando saldo for menor que o valor adicionado.</p></li>
+<li><p>Callshop: Ativar o módulo callshop para este usuário.</p></li>
+<li><p>Gravar chamadas: Gravar as chamadas de este usuário.</p></li>
+<li><p>PIN Callingcard: PIN para que o usuário pode entrar ao callingcard (se genera de manera aleatoria, mas se pode modificar).</p></li>
+<li><p>Restriçōes: Que tipo de restriçōes de chamada tera o usuário. (Ler documentação: Usuarios &gt;&gt; Números restringidos).</p></li>
+</ul>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/docs_logo.png" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="../index.html">MagnusBilling Wiki</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Primeiros passos</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/quick_install.html">Instalação</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/interface.html">Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/backup.html">Backup</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Segurança</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../firewall/iptables.html">Iptables</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Usuarios</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Criar um usuário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../campaign/startingdate.html">Data de inicio</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../firewall/iptables.html" title="previous chapter">Iptables</a></li>
+      <li>Next: <a href="../campaign/startingdate.html" title="next chapter">Data de inicio</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2005-2020, MagnusSolution.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/users/users.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

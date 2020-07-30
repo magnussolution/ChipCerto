@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iptables &#8212; MagnusBilling Wiki source documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="alternate" hreflang="en" href="http://docs.godotengine.org/en/" />
+    <link rel="alternate" hreflang="de" href="http://docs.godotengine.org/de/" />
+    <link rel="alternate" hreflang="es" href="http://docs.godotengine.org/es/" />
+    <link rel="alternate" hreflang="fr" href="http://docs.godotengine.org/fr/" />
+    <link rel="alternate" hreflang="ko" href="http://docs.godotengine.org/ko/" />
+    <link rel="alternate" hreflang="pl" href="http://docs.godotengine.org/pl/" />
+    <link rel="alternate" hreflang="pt-br" href="http://docs.godotengine.org/pt-br/" />
+    <link rel="alternate" hreflang="uk" href="http://docs.godotengine.org/uk/" />
+    <link rel="alternate" hreflang="zh-cn" href="http://docs.godotengine.org/zh-cn/" />
+    <link rel="alternate" hreflang="x-default" href="http://docs.godotengine.org/" />    
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Criar um usuário" href="../users/users.html" />
+    <link rel="prev" title="Backup" href="../get_started/backup.html" />
+
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="iptables">
+<h1>Iptables<a class="headerlink" href="#iptables" title="Permalink to this headline">¶</a></h1>
+<p>Iptables regras aplicadas na instalacao</p>
+<div class="section" id="basic-rules">
+<h2>Basic Rules<a class="headerlink" href="#basic-rules" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">iptablesF</span>
+<span class="n">iptablesA</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> <span class="n">icmp</span> <span class="o">--</span><span class="n">icmp</span><span class="o">-</span><span class="n">type</span> <span class="n">echo</span><span class="o">-</span><span class="n">request</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+<span class="n">iptablesA</span> <span class="n">OUTPUT</span> <span class="o">-</span><span class="n">p</span> <span class="n">icmp</span> <span class="o">--</span><span class="n">icmp</span><span class="o">-</span><span class="n">type</span> <span class="n">echo</span><span class="o">-</span><span class="n">reply</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+<span class="n">iptablesA</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">i</span> <span class="n">lo</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+<span class="n">iptablesA</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">m</span> <span class="n">state</span> <span class="o">--</span><span class="n">state</span> <span class="n">ESTABLISHED</span><span class="p">,</span><span class="n">RELATED</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+<span class="n">iptablesA</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> <span class="mi">22</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+<span class="n">iptablesP</span> <span class="n">INPUT</span> <span class="n">DROP</span>
+<span class="n">iptablesP</span> <span class="n">FORWARD</span> <span class="n">DROP</span>
+<span class="n">iptablesP</span> <span class="n">OUTPUT</span> <span class="n">ACCEPT</span>
+<span class="n">iptablesA</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> <span class="n">udp</span> <span class="o">-</span><span class="n">m</span> <span class="n">udp</span> <span class="o">--</span><span class="n">dport</span> <span class="mi">5060</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+<span class="n">iptablesA</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> <span class="n">udp</span> <span class="o">-</span><span class="n">m</span> <span class="n">udp</span> <span class="o">--</span><span class="n">dport</span> <span class="mi">10000</span><span class="p">:</span><span class="mi">20000</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+<span class="n">iptablesA</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">-</span><span class="n">m</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> <span class="mi">80</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="optional-rules">
+<h2>Optional Rules<a class="headerlink" href="#optional-rules" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">OPENVPN: <code class="docutils literal notranslate"><span class="pre">iptables</span> <span class="pre">-A</span> <span class="pre">INPUT</span> <span class="pre">-p</span> <span class="pre">udp</span> <span class="pre">--dport</span> <span class="pre">1194</span> <span class="pre">-j</span> <span class="pre">ACCEPT</span></code></div>
+<div class="line">ICMP: <code class="docutils literal notranslate"><span class="pre">iptables</span> <span class="pre">-A</span> <span class="pre">INPUT</span> <span class="pre">-p</span> <span class="pre">icmp</span> <span class="pre">--icmp-type</span> <span class="pre">echo-request</span> <span class="pre">-j</span> <span class="pre">ACCEPT</span></code></div>
+<div class="line">IAX: <code class="docutils literal notranslate"><span class="pre">iptables</span> <span class="pre">-A</span> <span class="pre">INPUT</span> <span class="pre">-p</span> <span class="pre">udp</span> <span class="pre">-m</span> <span class="pre">udp</span> <span class="pre">--dport</span> <span class="pre">4569</span> <span class="pre">-j</span> <span class="pre">ACCEPT</span></code></div>
+<div class="line">HTTPS: <code class="docutils literal notranslate"><span class="pre">iptablesA</span> <span class="pre">INPUT</span> <span class="pre">-p</span> <span class="pre">tcp</span> <span class="pre">-m</span> <span class="pre">tcp</span> <span class="pre">--dport</span> <span class="pre">443</span> <span class="pre">-j</span> <span class="pre">ACCEPT</span></code></div>
+</div>
+</div>
+<div class="section" id="friendly-scanner">
+<h2>Friendly Scanner<a class="headerlink" href="#friendly-scanner" title="Permalink to this headline">¶</a></h2>
+<p>Rules to block not so friendly scanner</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">iptables</span> <span class="o">-</span><span class="n">I</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">j</span> <span class="n">DROP</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> <span class="mi">5060</span> <span class="o">-</span><span class="n">m</span> <span class="n">string</span> <span class="o">--</span><span class="n">string</span> <span class="s2">&quot;friendly-scanner&quot;</span> <span class="o">--</span><span class="n">algo</span> <span class="n">bm</span>
+<span class="n">iptables</span> <span class="o">-</span><span class="n">I</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">j</span> <span class="n">DROP</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> <span class="mi">5080</span> <span class="o">-</span><span class="n">m</span> <span class="n">string</span> <span class="o">--</span><span class="n">string</span> <span class="s2">&quot;friendly-scanner&quot;</span> <span class="o">--</span><span class="n">algo</span> <span class="n">bm</span>
+<span class="n">iptables</span> <span class="o">-</span><span class="n">I</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">j</span> <span class="n">DROP</span> <span class="o">-</span><span class="n">p</span> <span class="n">udp</span> <span class="o">--</span><span class="n">dport</span> <span class="mi">5060</span> <span class="o">-</span><span class="n">m</span> <span class="n">string</span> <span class="o">--</span><span class="n">string</span> <span class="s2">&quot;friendly-scanner&quot;</span> <span class="o">--</span><span class="n">algo</span> <span class="n">bm</span>
+<span class="n">iptables</span> <span class="o">-</span><span class="n">I</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">j</span> <span class="n">DROP</span> <span class="o">-</span><span class="n">p</span> <span class="n">udp</span> <span class="o">--</span><span class="n">dport</span> <span class="mi">5080</span> <span class="o">-</span><span class="n">m</span> <span class="n">string</span> <span class="o">--</span><span class="n">string</span> <span class="s2">&quot;friendly-scanner&quot;</span> <span class="o">--</span><span class="n">algo</span> <span class="n">bm</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><em>Optional</em></div>
+</div>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">iptables</span> <span class="o">-</span><span class="n">I</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">j</span> <span class="n">DROP</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> <span class="mi">5060</span> <span class="o">-</span><span class="n">m</span> <span class="n">string</span><span class="o">--</span><span class="n">string</span> <span class="s2">&quot;VaxSIPUserAgent&quot;</span> <span class="o">--</span><span class="n">algo</span> <span class="n">bm</span>
+<span class="n">iptables</span> <span class="o">-</span><span class="n">I</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">j</span> <span class="n">DROP</span> <span class="o">-</span><span class="n">p</span> <span class="n">udp</span> <span class="o">--</span><span class="n">dport</span> <span class="mi">5060</span> <span class="o">-</span><span class="n">m</span> <span class="n">string</span> <span class="o">--</span><span class="n">string</span> <span class="s2">&quot;VaxIPUserAgent&quot;</span> <span class="o">--</span><span class="n">algo</span> <span class="n">bm</span>
+<span class="n">iptables</span> <span class="o">-</span><span class="n">I</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">j</span> <span class="n">DROP</span> <span class="o">-</span><span class="n">p</span> <span class="n">udp</span> <span class="o">--</span><span class="n">dport</span> <span class="mi">5080</span> <span class="o">-</span><span class="n">m</span> <span class="n">string</span> <span class="o">--</span><span class="n">string</span> <span class="s2">&quot;VaxSIPUserAgent&quot;</span> <span class="o">--</span><span class="n">algo</span> <span class="n">bm</span>
+<span class="n">iptables</span> <span class="o">-</span><span class="n">I</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">j</span> <span class="n">DROP</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span> <span class="o">--</span><span class="n">dport</span> <span class="mi">5080</span> <span class="o">-</span><span class="n">m</span> <span class="n">string</span> <span class="o">--</span><span class="n">string</span> <span class="s2">&quot;VaxIPUserAgent&quot;</span> <span class="o">--</span><span class="n">algo</span> <span class="n">bm</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="show-iptable-rules">
+<h2>Show iptable rules<a class="headerlink" href="#show-iptable-rules" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">iptables</span> <span class="o">-</span><span class="n">L</span> <span class="o">-</span><span class="n">v</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="show-line-numbers">
+<h2>Show line numbers<a class="headerlink" href="#show-line-numbers" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">iptables</span> <span class="o">-</span><span class="n">L</span> <span class="o">-</span><span class="n">v</span> <span class="o">--</span><span class="n">line</span><span class="o">-</span><span class="n">numbers</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="delete-a-line">
+<h2>Delete a line<a class="headerlink" href="#delete-a-line" title="Permalink to this headline">¶</a></h2>
+<p>Delete line 2</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">iptables</span> <span class="o">-</span><span class="n">D</span> <span class="n">INPUT</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="block-ip-address">
+<h2>Block IP address<a class="headerlink" href="#block-ip-address" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">iptables</span> <span class="o">-</span><span class="n">I</span> <span class="n">INPUT</span> <span class="o">-</span><span class="n">s</span> <span class="mf">62.210</span><span class="o">.</span><span class="mf">245.132</span> <span class="o">-</span><span class="n">j</span> <span class="n">DROP</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="save-changes">
+<h2>Save Changes<a class="headerlink" href="#save-changes" title="Permalink to this headline">¶</a></h2>
+<p>Centos</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="n">iptables</span> <span class="n">save</span>
+</pre></div>
+</div>
+<p>Debian / Ubuntu</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">iptables</span><span class="o">-</span><span class="n">persistent</span>
+<span class="n">service</span> <span class="n">iptables</span><span class="o">-</span><span class="n">persistent</span> <span class="n">save</span>
+<span class="n">dpkg</span><span class="o">-</span><span class="n">reconfigure</span> <span class="n">iptables</span><span class="o">-</span><span class="n">persistent</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/docs_logo.png" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="../index.html">MagnusBilling Wiki</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Primeiros passos</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/quick_install.html">Instalação</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/interface.html">Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../get_started/backup.html">Backup</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Segurança</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Iptables</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Usuarios</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../users/users.html">Criar um usuário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../campaign/startingdate.html">Data de inicio</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../get_started/backup.html" title="previous chapter">Backup</a></li>
+      <li>Next: <a href="../users/users.html" title="next chapter">Criar um usuário</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2005-2020, MagnusSolution.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/firewall/iptables.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

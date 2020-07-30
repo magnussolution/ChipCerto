@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backup &#8212; MagnusBilling Wiki source documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="alternate" hreflang="en" href="http://docs.godotengine.org/en/" />
+    <link rel="alternate" hreflang="de" href="http://docs.godotengine.org/de/" />
+    <link rel="alternate" hreflang="es" href="http://docs.godotengine.org/es/" />
+    <link rel="alternate" hreflang="fr" href="http://docs.godotengine.org/fr/" />
+    <link rel="alternate" hreflang="ko" href="http://docs.godotengine.org/ko/" />
+    <link rel="alternate" hreflang="pl" href="http://docs.godotengine.org/pl/" />
+    <link rel="alternate" hreflang="pt-br" href="http://docs.godotengine.org/pt-br/" />
+    <link rel="alternate" hreflang="uk" href="http://docs.godotengine.org/uk/" />
+    <link rel="alternate" hreflang="zh-cn" href="http://docs.godotengine.org/zh-cn/" />
+    <link rel="alternate" hreflang="x-default" href="http://docs.godotengine.org/" />    
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Iptables" href="../firewall/iptables.html" />
+    <link rel="prev" title="Interface" href="interface.html" />
+
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="backup">
+<h1>Backup<a class="headerlink" href="#backup" title="Permalink to this headline">¶</a></h1>
+<p>É sempre uma boa ideia ter um backup.</p>
+<div class="section" id="backup-manual">
+<h2>Backup manual<a class="headerlink" href="#backup-manual" title="Permalink to this headline">¶</a></h2>
+<p>O projeto ja conta com um script para fazer o backup do Banco de dados e dos arquivos do Asterisk.
+Na instalaçao ja é adicionado o script no crontab do linux para que realize um backup por dia. Por padrao as 02:00.
+O backup é salvo no diretorio /usr/local/src</p>
+</div>
+<div class="section" id="manualmente">
+<h2>Manualmente<a class="headerlink" href="#manualmente" title="Permalink to this headline">¶</a></h2>
+<p>Execute este comando no SHELL do seu servidor.
+php /var/www/html/mbilling/cron.php Backup</p>
+</div>
+<div class="section" id="crontab">
+<h2>Crontab<a class="headerlink" href="#crontab" title="Permalink to this headline">¶</a></h2>
+<p>Configurando o crontab -e</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">crontab</span> <span class="o">-</span><span class="n">e</span>
+</pre></div>
+</div>
+<p>Procure a linha abaixo e altere para o horario desejado, ou comente a linha com ; para nao fazer backup automatico.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="mi">2</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="n">php</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">mbilling</span><span class="o">/</span><span class="n">cron</span><span class="o">.</span><span class="n">php</span> <span class="n">Backup</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/docs_logo.png" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="../index.html">MagnusBilling Wiki</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Primeiros passos</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quick_install.html">Instalação</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interface.html">Interface</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Backup</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Segurança</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../firewall/iptables.html">Iptables</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Usuarios</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../users/users.html">Criar um usuário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../campaign/startingdate.html">Data de inicio</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="interface.html" title="previous chapter">Interface</a></li>
+      <li>Next: <a href="../firewall/iptables.html" title="next chapter">Iptables</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2005-2020, MagnusSolution.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/get_started/backup.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

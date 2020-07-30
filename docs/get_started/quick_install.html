@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalação &#8212; MagnusBilling Wiki source documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="alternate" hreflang="en" href="http://docs.godotengine.org/en/" />
+    <link rel="alternate" hreflang="de" href="http://docs.godotengine.org/de/" />
+    <link rel="alternate" hreflang="es" href="http://docs.godotengine.org/es/" />
+    <link rel="alternate" hreflang="fr" href="http://docs.godotengine.org/fr/" />
+    <link rel="alternate" hreflang="ko" href="http://docs.godotengine.org/ko/" />
+    <link rel="alternate" hreflang="pl" href="http://docs.godotengine.org/pl/" />
+    <link rel="alternate" hreflang="pt-br" href="http://docs.godotengine.org/pt-br/" />
+    <link rel="alternate" hreflang="uk" href="http://docs.godotengine.org/uk/" />
+    <link rel="alternate" hreflang="zh-cn" href="http://docs.godotengine.org/zh-cn/" />
+    <link rel="alternate" hreflang="x-default" href="http://docs.godotengine.org/" />    
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Interface" href="interface.html" />
+    <link rel="prev" title="Bem vindo a documentação do MagnusBilling 6 em português." href="../index.html" />
+
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="instalacao">
+<h1>Instalação<a class="headerlink" href="#instalacao" title="Permalink to this headline">¶</a></h1>
+<p>Para instalar MagnusBilling, você precisa apenas de um servidor com CentOS 7 ou Debian 8, 64 ou 32 bits, instalação básica.</p>
+<p><strong>1.</strong> Execute os comandos abaixo como root. O script vai instalar Magnusbilling, Asterisk e todas as dependências necessárias, como: IPTables, Fail2ban, Apache, PHP e mysql.</p>
+<p>Instale o Linux <strong>minimal</strong>.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">src</span><span class="o">/</span>
+<span class="n">yum</span> <span class="o">-</span><span class="n">y</span> <span class="n">install</span> <span class="n">wget</span>
+<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">magnussolution</span><span class="o">/</span><span class="n">magnusbilling6</span><span class="o">/</span><span class="k">master</span><span class="o">/</span><span class="n">script</span><span class="o">/</span><span class="n">install</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">install</span><span class="o">.</span><span class="n">sh</span>
+<span class="o">./</span><span class="n">install</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p><strong>2.</strong> Durante a instalação será solicitado o idioma padrão para o Mangusbilling. Escolha digitando o numero do idioma escolhido.</p>
+<div class="highlight-gdscript notranslate"><div class="highlight"><pre><span></span><span class="n">Instalação</span> <span class="n">completa</span><span class="o">.</span> <span class="n">ATENÇÃO</span><span class="o">!!</span> <span class="n">APÓS</span> <span class="n">TERMINAR</span> <span class="n">A</span> <span class="n">INSTALAÇÃO</span><span class="p">,</span> <span class="n">O</span> <span class="n">SERVIDOR</span> <span class="n">SERÁ</span> <span class="n">REINICIADO</span> <span class="n">AUTOMATICAMENTE</span><span class="o">!</span>
+
+<span class="n">Use</span> <span class="n">um</span> <span class="n">browser</span> <span class="n">para</span> <span class="n">login</span><span class="o">.</span>
+   <span class="n">entre</span> <span class="n">em</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">000.000</span><span class="o">.</span><span class="mf">000.000</span>
+   <span class="n">Usuário</span><span class="p">:</span> <span class="n">root</span>
+   <span class="n">Senha</span><span class="p">:</span> <span class="n">magnus</span> <span class="p">(</span><span class="n">Lembre</span><span class="o">-</span><span class="n">se</span> <span class="n">de</span> <span class="n">alterar</span> <span class="n">a</span> <span class="n">senha</span> <span class="n">padrão</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/ilogin.png"><img alt="../_images/ilogin.png" src="../_images/ilogin.png" style="width: 887.2px; height: 544.0px;" /></a>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/docs_logo.png" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="../index.html">MagnusBilling Wiki</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Primeiros passos</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Instalação</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interface.html">Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backup.html">Backup</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Segurança</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../firewall/iptables.html">Iptables</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Usuarios</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../users/users.html">Criar um usuário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../campaign/startingdate.html">Data de inicio</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../index.html" title="previous chapter">Bem vindo a documentação do MagnusBilling 6 em português.</a></li>
+      <li>Next: <a href="interface.html" title="next chapter">Interface</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2005-2020, MagnusSolution.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/get_started/quick_install.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
